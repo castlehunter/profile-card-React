@@ -1,5 +1,13 @@
 import "./App.css";
 
+var tagData = [
+  { tagId: 1, color: "#E84F33", tagName: "JavaScript" },
+  { tagId: 2, color: "#C3DCAF", tagName: "HTML+CSS" },
+  { tagId: 3, color: "green", tagName: "Git and Github" },
+  { tagId: 4, color: "purple", tagName: "React" },
+  { tagId: 5, color: "Orange", tagName: "Svelte" },
+];
+
 function App() {
   return (
     <div className="main-box">
@@ -11,21 +19,40 @@ function App() {
         and large, arched windows let in streams of golden sunlight that danced
         on the dust particles in the air.
       </p>
+
+      {tagData.map((tag) => (
+        <Tag obj={tag} key={tag.tagId} />
+      ))}
+
+      {/* method 2
+       {tagData.map((tag) => (
+        <Tag theColor={tag.color} theTagName={tag.tagName} />
+      ))} */}
+
+      {/* method 3     
       <Tag color="red" tagName="HTML+CSS" />
       <Tag color="gray" tagName="JavaScript" />
       <Tag color="green" tagName="Git and Github" />
       <Tag color="purple" tagName="React" />
-      <Tag color="orange" tagName="Svelte" />
+      <Tag color="orange" tagName="Svelte" /> */}
     </div>
   );
 }
 
-function Tag(props) {
+function Tag({ obj }) {
   return (
-    <span style={{ backgroundColor: props.color }} className="tagBox">
-      {props.tagName}
+    <span style={{ backgroundColor: obj.color }} className="tagBox">
+      {obj.tagName}
     </span>
   );
 }
+
+// function Tag(props) {
+//   return (
+//     <span style={{ backgroundColor: props.theColor }} className="tagBox">
+//       {props.theTagName}
+//     </span>
+//   );
+// }
 
 export default App;
