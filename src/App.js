@@ -1,11 +1,16 @@
 import "./App.css";
 
 var tagData = [
-  { tagId: 1, color: "#E84F33", tagName: "JavaScript" },
-  { tagId: 2, color: "#C3DCAF", tagName: "HTML+CSS" },
-  { tagId: 3, color: "green", tagName: "Git and Github" },
-  { tagId: 4, color: "purple", tagName: "React" },
-  { tagId: 5, color: "Orange", tagName: "Svelte" },
+  { tagId: 1, color: "#E84F33", tagName: "JavaScript", level: "beginner" },
+  { tagId: 2, color: "#C3DCAF", tagName: "HTML+CSS", level: "beginner" },
+  {
+    tagId: 3,
+    color: "green",
+    tagName: "Git and Github",
+    level: "intermediate",
+  },
+  { tagId: 4, color: "purple", tagName: "React", level: "beginner" },
+  { tagId: 5, color: "Orange", tagName: "Svelte", level: "advanced" },
 ];
 
 function App() {
@@ -21,7 +26,12 @@ function App() {
       </p>
 
       {tagData.map((tag) => (
-        <Tag obj={tag} key={tag.tagId} />
+        <Tag
+          color={tag.color}
+          tagName={tag.tagName}
+          level={tag.level}
+          key={tag.tagId}
+        />
       ))}
 
       {/* method 2
@@ -39,11 +49,14 @@ function App() {
   );
 }
 
-function Tag({ obj }) {
+function Tag({ color, tagName, level }) {
   return (
-    <span style={{ backgroundColor: obj.color }} className="tagBox">
-      {obj.tagName}
-    </span>
+    <div style={{ backgroundColor: color }} className="tagBox">
+      <span>{tagName}</span>
+      <span>{level === "beginner" && <span>-{level}</span>}</span>
+      <span>{level === "intermediate" && <span>-{level}</span>}</span>
+      <span>{level === "advanced" && <span>-{level}</span>}</span>
+    </div>
   );
 }
 
